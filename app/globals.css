@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: dark;
+  --background: 228 33% 4%;
+  --foreground: 214 100% 96%;
+  --card: 230 32% 8%;
+  --card-foreground: 214 100% 96%;
+  --popover: 230 32% 8%;
+  --popover-foreground: 214 100% 96%;
+  --primary: 266 100% 72%;
+  --primary-foreground: 230 33% 6%;
+  --secondary: 211 100% 62%;
+  --secondary-foreground: 230 33% 6%;
+  --muted: 231 22% 15%;
+  --muted-foreground: 218 25% 70%;
+  --accent: 187 100% 54%;
+  --accent-foreground: 230 33% 6%;
+  --destructive: 0 90% 67%;
+  --destructive-foreground: 214 100% 96%;
+  --border: 225 26% 22%;
+  --input: 225 26% 22%;
+  --ring: 266 100% 72%;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(115, 80, 255, 0.22), transparent 30rem),
+    radial-gradient(circle at 85% 12%, rgba(0, 188, 255, 0.18), transparent 28rem),
+    linear-gradient(180deg, #050711 0%, #080a18 48%, #050711 100%);
+  color: hsl(var(--foreground));
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(157, 99, 255, 0.55);
+  color: white;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.035));
+  border: 1px solid rgba(170, 190, 255, 0.2);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px);
+}
+
+.neon-text {
+  text-shadow: 0 0 28px rgba(147, 90, 255, 0.8), 0 0 46px rgba(41, 170, 255, 0.35);
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(rgba(136, 158, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(136, 158, 255, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+.aurora {
+  background:
+    radial-gradient(circle, rgba(111, 66, 255, 0.38), transparent 32%),
+    radial-gradient(circle, rgba(0, 201, 255, 0.26), transparent 34%),
+    radial-gradient(circle, rgba(238, 78, 255, 0.22), transparent 28%);
+  filter: blur(60px);
+}
