@@ -1,4 +1,4 @@
-import { Zap, Shield, Zoned } from "lucide-react";
+import { Zap, Shield, Globe } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 
 const features = [
@@ -13,7 +13,7 @@ const features = [
     description: "Your files never leave your device. All processing happens locally"
   },
   {
-    icon: Zoned,
+    icon: Globe,
     title: "No Sign-Up",
     description: "Start using DropForge immediately. No accounts or registration needed"
   }
