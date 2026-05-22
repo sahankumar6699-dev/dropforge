@@ -6,23 +6,19 @@ export function MouseGlow() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const handleMove = (event: PointerEvent) => {
+      setPosition({ x: event.clientX, y: event.clientY });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    window.addEventListener("pointermove", handleMove);
+    return () => window.removeEventListener("pointermove", handleMove);
   }, []);
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
-      style={{
-        background: `radial-gradient(800px at ${position.x}px ${position.y}px, rgba(79, 172, 254, 0.1), transparent 80%)`
-      }}
+      aria-hidden="true"
+      className="pointer-events-none fixed z-20 hidden h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(154,96,255,0.24),rgba(0,190,255,0.1)_42%,transparent_95%)] md:block"
+      style={{ left: position.x, top: position.y }}
     />
   );
 }

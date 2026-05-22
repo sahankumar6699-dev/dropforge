@@ -1,34 +1,54 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { ArrowUpRight } from "lucide-react";
+import { MotionArticle } from "@/components/motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import type { Tool } from "@/lib/tools";
 
-interface ToolCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  href: string;
-}
+type ToolCardProps = {
+  tool: Tool;
+  index?: number;
+};
 
-export function ToolCard({ icon, title, description, href }: ToolCardProps) {
+export function ToolCard({ tool, index = 0 }: ToolCardProps) {
+  const Icon = tool.icon;
+
   return (
-    <motion.div
-      whileHover={{ y: -8 }}
-      className="glass group relative overflow-hidden rounded-lg p-6 transition-all duration-300"
+    <MotionArticle
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      whileHover={{ y: -6 }}
+      className="h-full"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/0 via-transparent to-cyan-600/0 opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
-
-      <div className="relative z-10">
-        <div className="mb-4 inline-block rounded-lg bg-slate-800 p-3">{icon}</div>
-
-        <h3 className="text-xl font-bold text-white">{title}</h3>
-        <p className="mt-2 text-sm text-slate-300">{description}</p>
-
-        <Button asChild className="mt-4 w-full" variant="outline">
-          <Link href={href}>Explore</Link>
-        </Button>
-      </div>
-    </motion.div>
+      <Link href={tool.href} className="group block h-full">
+        <Card className="relative h-full overflow-hidden rounded-lg transition duration-300 hover:border-primary/45 hover:bg-white/[0.08]">
+          <div
+            className={cn(
+              "absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br opacity-30 blur-2xl transition group-hover:opacity-60",
+              tool.accent
+            )}
+          />
+          <CardHeader>
+            <div className="flex items-start justify-between gap-4">
+              <span
+                className={cn(
+                  "flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-br shadow-[0_0_32px_rgba(99,102,241,0.35)]",
+                  tool.accent
+                )}
+              >
+                <Icon className="h-6 w-6 text-white" />
+              </span>
+              <ArrowUpRight className="h-5 w-5 text-muted-foreground transition group-hover:text-cyan-200" />
+            </div>
+            <CardTitle className="pt-2 text-white">{tool.name}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm leading-6 text-muted-foreground">{tool.description}</p>
+          </CardContent>
+        </Card>
+      </Link>
+    </MotionArticle>
   );
 }
